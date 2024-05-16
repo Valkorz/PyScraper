@@ -1,6 +1,6 @@
 ### PyScraper
 
-By default, this scraper looks for data in BRL, though the Mercado Livre website, but the code can be tweaked. Also, additional websites can be added in `config/webConfig.json`, the script will check through every single website to calculate an average price. This tool is useful when you quickly need to estimate the price of a heap of items.
+By default, this scraper looks for data in BRL, through the Mercado Livre website, but the code can be tweaked. Also, additional websites can be added in `config/webConfig.json`, the script will check through every single website to calculate an average price. This tool is useful when you quickly need to estimate the price of a heap of items.
 
 ---
 
