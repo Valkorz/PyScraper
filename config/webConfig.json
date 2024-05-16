@@ -1,0 +1,17 @@
+{
+    "Websites" : {
+        "MercadoLivre" : {
+            "Url" : "https://lista.mercadolivre.com.br/",
+            "ItemPrice" : {
+                "Attribute" : "ui-search-result__content-wrapper",
+                "PriceTag" : "span",
+                "PriceClass" : "andes-money-amount__fraction",              
+                "NameTag" : "h2",
+                "NameClass" : "ui-search-item__title",
+                "ImageAttribute" : "ui-search-result__image",
+                "ImageTag" : "img",
+                "ImageClass" : "ui-search-result-image__element"
+            }
+        }
+    }
+}
