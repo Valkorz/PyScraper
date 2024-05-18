@@ -60,21 +60,29 @@ def scrapeImage(url : str, target : str, imageClass : str):
     return img
     
 #Remove outliers and return average
-def format(prices : float, names : str, target : str, treshold = 2):
+def format(prices : float, names : str, target : str, blacklist, treshold = 1.5):
     
     filtered_prices = []
     for price, name in zip(prices, names):
+        contains = False
         if target.lower() in name.lower():
-            if "kit" in name.lower() or "devkit" in name.lower() or "conjunto" in name.lower(): continue
-            else: filtered_prices.append(price)
+            for i in range(len(blacklist)):
+                if blacklist[i] in name.lower(): 
+                    contains = True
+                    break   
+        if contains: continue
+        else:
+            filtered_prices.append(price)
+            print("Added: ", price)
+
     
-    meanPrice = np.mean(filtered_prices)
-    stdDev = np.std(filtered_prices)
+    #Calculate Q1, Q3
+    print(filtered_prices)
+    print(blacklist)
+    Q1 = np.percentile(filtered_prices, 25)
+    Q3 = np.percentile(filtered_prices, 75)
     
-    lowerLimit = meanPrice - treshold * stdDev
-    upperLimit = meanPrice + treshold * stdDev
-    
-    filtered_prices = [price for price in prices if lowerLimit <= price <= upperLimit]
+    filtered_prices = [price for price in prices if Q1 <= price <= Q3]
     
     return filtered_prices
 
