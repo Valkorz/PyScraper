@@ -64,21 +64,13 @@ def format(prices : float, names : str, target : str, blacklist, treshold = 1.5)
     
     filtered_prices = []
     for price, name in zip(prices, names):
-        contains = False
-        if target.lower() in name.lower():
-            for i in range(len(blacklist)):
-                if blacklist[i] in name.lower(): 
-                    contains = True
-                    break   
-        if contains: continue
-        else:
+        print(target.lower(), " and ", name.lower())
+        if not any(blacklist_word.lower() in name.lower() for blacklist_word in blacklist):
             filtered_prices.append(price)
-            print("Added: ", price)
-
+            print("Added: ", price, " of name: ", name)
     
     #Calculate Q1, Q3
     print(filtered_prices)
-    print(blacklist)
     Q1 = np.percentile(filtered_prices, 25)
     Q3 = np.percentile(filtered_prices, 75)
     

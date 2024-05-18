@@ -40,14 +40,22 @@ label_avg.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 label_target = customtkinter.CTkLabel(root_window, text=f"Source: {0}", font=("arial bold", 22))
 label_target.place(relx=0.5, rely=0.6, anchor=tkinter.CENTER)
 
+error_label = customtkinter.CTkLabel(root_window, text=f"Error: ", font=("arial bold", 28), fg_color="red")
+
 
 def update():
-    textBoxVal.configure(text=f"Query: {textbox.get()}")
-    data = build.scrapeFrom(textbox.get(), False)
-    listFiltered = build.avg(data, textbox.get(), separate(textbox_2.get()))
-    label_avg.configure(text=f"Average price: R$ {sum(listFiltered) / len(listFiltered)}")
-    label_target.configure(text=f"Source: {sourceData["Websites"]["MercadoLivre"]["Url"]}")
-    build.toSheet(textboxPath.get(), listFiltered, textbox.get())
+    try:
+        textBoxVal.configure(text=f"Query: {textbox.get()}")
+        data = build.scrapeFrom(textbox.get(), False)
+        listFiltered = build.avg(data, textbox.get(), separate(textbox_2.get()))
+        label_avg.configure(text=f"Average price: R$ {sum(listFiltered) / len(listFiltered)}")
+        label_target.configure(text=f"Source: {sourceData["Websites"]["MercadoLivre"]["Url"]}")
+        build.toSheet(textboxPath.get(), listFiltered, textbox.get())
+        error_label.destroy()
+    except Exception as e:
+        error_label.configure(text=f"Error: {e}")
+        error_label.place(relx=0.5, rely=0.05, anchor=tkinter.CENTER)
+        
     
 def view():
     os.startfile(f"data\\{textboxPath.get()}.xlsx")
