@@ -16,11 +16,17 @@ root_window.title("Price scraper")
 label = customtkinter.CTkLabel(root_window, text="Price scraper", font=("arial bold", 42))
 label.place(relx=0.5, rely=0.1, anchor=tkinter.CENTER)
 
+label_2 = customtkinter.CTkLabel(root_window, text="Search term: ", font=("arial bold", 18))
+label_2.place(relx=0.5, rely=0.15, anchor=tkinter.CENTER)
+
 textbox = tkinter.Entry(root_window, font=("arial", 16))
-textbox.place(relx=0.2, rely=0.2, anchor=tkinter.CENTER)
+textbox.place(relx=0.5, rely=0.2, anchor=tkinter.CENTER)
+
+label_2 = customtkinter.CTkLabel(root_window, text="Blacklisted words: ", font=("arial bold", 18))
+label_2.place(relx=0.5, rely=0.25, anchor=tkinter.CENTER)
 
 textbox_2 = tkinter.Entry(root_window, font=("arial", 16))
-textbox_2.place(relx=0.6, rely=0.2, anchor=tkinter.CENTER)
+textbox_2.place(relx=0.5, rely=0.3, anchor=tkinter.CENTER)
 
 textboxPath = tkinter.Entry(root_window, textvariable="file name", font=("arial", 16))
 textboxPath.place(relx=0.5, rely=0.8, anchor=tkinter.CENTER)
@@ -57,8 +63,6 @@ def separate(text : str):
             characters += text[i]
             
     return terms
-    
-    
     
 button = customtkinter.CTkButton(master=root_window, corner_radius=10, 
                                   command=update, 
